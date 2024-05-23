@@ -33,12 +33,12 @@ public class App
       pasteListPage = new PasteListPage(driver);
    }
    @Test
-   public void createNewPasteText(){
+   public void createNewPasteText() {
       pasteBinPage.writeTextInNewPasteField("git config --global user.name  \"New Sheriff in Town\"\n"+
               "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
               "git push origin master --force");
-      pasteBinPage.selectSyntaxtHighlighting();
-      pasteBinPage.selectPasteExpirationDropdown();
+      pasteBinPage.selectSyntaxtHighlighting("Bash");
+      pasteBinPage.selectPasteExpirationDropdown("10 Minutes");
       pasteBinPage.writeTextInPasteTitle("how to gain dominance among developers");
       pasteBinPage.clickOnCreateNewPaste();
       Assert.assertTrue(pasteListPage.getNoteMessage().contains("how to gain dominance among developers"));
