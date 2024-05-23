@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.w3c.dom.Document;
 
 public class App
 {
@@ -42,6 +43,10 @@ public class App
       pasteBinPage.clickOnCreateNewPaste();
       Assert.assertTrue(pasteListPage.getNoteMessage().contains("how to gain dominance among developers"));
 
+      Assert.assertTrue(pasteListPage.getCodeMatchText().contains("git config --global user.name  \"New Sheriff in Town\"\n" +
+             "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
+             "git push origin master --force"));
+
       /**   Assert text COLOR
        **/
       // Example CSS selector for the styled text within quotes
@@ -70,6 +75,8 @@ public class App
             Assert.assertEquals(color2, expectedColor);
             Assert.assertEquals(actualText1, expectedText1);
             Assert.assertEquals(actualText2, expectedText2);
-            driver.quit();
+   }
+   public void tearDown(){
+      driver.quit();
    }
 }
